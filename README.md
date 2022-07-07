@@ -1,1 +1,1 @@
-# observability-elastic-stack
+# sample-observability
