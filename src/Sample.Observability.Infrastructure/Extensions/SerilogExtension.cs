@@ -28,7 +28,7 @@ public static class SerilogExtension
             {
                 TypeName = null,
                 AutoRegisterTemplate = true,
-                IndexFormat = "indexlogs",
+                IndexFormat = configuration["ElasticsearchSettings:defaultIndex"],
                 BatchAction = ElasticOpType.Create,
                 CustomFormatter = new EcsTextFormatter(),
                 ModifyConnectionSettings = x => x.BasicAuthentication(configuration["ElasticsearchSettings:username"], configuration["ElasticsearchSettings:password"])

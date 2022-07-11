@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using Sample.Observability.Infrastructure.Events;
+using Sample.Observability.Infrastructure.ViewModels;
 
 namespace Sample.Observability.WebApi.Controllers;
 
@@ -7,17 +7,18 @@ namespace Sample.Observability.WebApi.Controllers;
 [Route("[controller]")]
 public class ClientController : ControllerBase
 {
-    private readonly ILogger<ClientController> _logger;
-
-    public ClientController(ILogger<ClientController> logger)
+    [HttpPost]
+    public async Task<IActionResult> PostClient([FromBody] ClientViewModel client)
     {
-        _logger = logger;
+        Serilog.Log.Information($"PostClient method called: {client.Name}");
+
+        return Ok();
     }
 
-    [HttpPost]
-    public async Task<IActionResult> PostClient([FromBody] ClientSavedEvent client)
+    [HttpGet]
+    public async Task<IActionResult> GetClient([FromQuery] string name)
     {
-        _logger.LogInformation($"Send client: {client.Name}");
+        Serilog.Log.Information($"GetClient method called. With the parameter name={name}");
 
         return Ok();
     }

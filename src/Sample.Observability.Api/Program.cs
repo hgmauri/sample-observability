@@ -27,16 +27,13 @@ try
     app.MapControllers();
 
     await app.RunAsync();
-
-    return 0;
 }
 catch (Exception ex)
 {
     Log.Fatal(ex, "Host terminated unexpectedly");
-
-    return 1;
 }
 finally
 {
+    Log.Information("Server Shutting down...");
     Log.CloseAndFlush();
 }
