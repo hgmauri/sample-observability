@@ -13,6 +13,7 @@ try
     builder.Services.AddControllers();
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen();
+    builder.Services.AddElasticsearch(builder.Configuration);
 
     var app = builder.Build();
 
